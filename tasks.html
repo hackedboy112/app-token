@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Admin - Tasks</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Token Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="users.html"><i class="fas fa-users"></i> Users</a>
+            </li>
+            <li class="active">
+                <a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a>
+            </li>
+            <li>
+                <a href="mining.html"><i class="fas fa-coins"></i> Mining</a>
+            </li>
+            <li>
+                <a href="referrals.html"><i class="fas fa-user-plus"></i> Referrals</a>
+            </li>
+            <li>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+            <li>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+            <li class="logout">
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search tasks...">
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="admin-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Admin">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Task Management</h2>
+                <button class="primary-btn" onclick="openAddTaskModal()">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Token Reward</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody">
+                        <!-- Task data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Task Modal -->
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <h2>Add New Task</h2>
+            <form id="addTaskForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Token Reward</label>
+                    <input type="number" name="tokenReward" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeAddTaskModal()">Cancel</button>
+                    <button type="submit" class="primary-btn">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="tasks.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

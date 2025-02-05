@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Admin - Settings</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Token Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="users.html"><i class="fas fa-users"></i> Users</a>
+            </li>
+            <li>
+                <a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a>
+            </li>
+            <li>
+                <a href="mining.html"><i class="fas fa-coins"></i> Mining</a>
+            </li>
+            <li>
+                <a href="referrals.html"><i class="fas fa-user-plus"></i> Referrals</a>
+            </li>
+            <li>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+            <li class="active">
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+            <li class="logout">
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search settings...">
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="admin-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Admin" id="adminAvatar">
+                    <span id="adminName">Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1>Settings</h1>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <h2>Profile Settings</h2>
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Admin" id="profileAvatar">
+                        <label for="avatarUpload" class="avatar-upload">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                        </label>
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-name" id="profileName">Admin User</h3>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                </div>
+
+                <form id="profileForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" value="Admin User">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" value="admin@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Change Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+    <script>
+        // Handle profile image upload
+        document.getElementById('avatarUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileAvatar').src = e.target.result;
+                    document.getElementById('adminAvatar').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('adminName').textContent = name;
+            // Add API call to save changes
+        });
+    </script>
+</body>
+</html>

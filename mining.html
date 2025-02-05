@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Admin - Mining</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Token Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="users.html"><i class="fas fa-users"></i> Users</a>
+            </li>
+            <li>
+                <a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a>
+            </li>
+            <li class="active">
+                <a href="mining.html"><i class="fas fa-coins"></i> Mining</a>
+            </li>
+            <li>
+                <a href="referrals.html"><i class="fas fa-user-plus"></i> Referrals</a>
+            </li>
+            <li>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+            <li>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+            <li class="logout">
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search mining activities...">
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="admin-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Admin">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Mining Management</h2>
+                <button class="primary-btn" onclick="adjustMiningRate()">
+                    <i class="fas fa-sliders-h"></i> Adjust Mining Rate
+                </button>
+            </div>
+
+            <!-- Mining Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(76, 175, 80, 0.1);">
+                        <i class="fas fa-hammer" style="color: #4CAF50;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Miners</h3>
+                        <p id="activeMinerCount">156</p>
+                        <span class="stat-change positive">+5% this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(33, 150, 243, 0.1);">
+                        <i class="fas fa-coins" style="color: #2196F3;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Tokens Mined Today</h3>
+                        <p id="tokensMined">2,450</p>
+                        <span class="stat-change positive">+12% today</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(255, 193, 7, 0.1);">
+                        <i class="fas fa-tachometer-alt" style="color: #FFC107;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Mining Rate</h3>
+                        <p id="miningRate">0.5 tokens/min</p>
+                        <span class="stat-change neutral">Unchanged</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mining Activity Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Mining Time</th>
+                            <th>Tokens Earned</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="miningTableBody">
+                        <!-- Mining data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="mining.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

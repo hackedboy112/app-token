@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Admin - Dashboard</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Token Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="users.html"><i class="fas fa-users"></i> Users</a>
+            </li>
+            <li>
+                <a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a>
+            </li>
+            <li>
+                <a href="mining.html"><i class="fas fa-coins"></i> Mining</a>
+            </li>
+            <li>
+                <a href="referrals.html"><i class="fas fa-user-plus"></i> Referrals</a>
+            </li>
+            <li>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+            <li>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+            <li class="logout">
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn" onclick="showNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="admin-profile" onclick="showProfileMenu()">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Admin">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-card" onclick="location.href='users.html'">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Add User</span>
+                </button>
+                <button class="action-card" onclick="location.href='tasks.html'">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Create Task</span>
+                </button>
+                <button class="action-card" onclick="location.href='mining.html'">
+                    <i class="fas fa-hammer"></i>
+                    <span>Mining Controls</span>
+                </button>
+                <button class="action-card" onclick="location.href='notifications.html'">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Send Notice</span>
+                </button>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(67, 97, 238, 0.1);">
+                        <i class="fas fa-users" style="color: var(--primary-color);"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Users</h3>
+                        <p id="totalUsers">1,234</p>
+                        <span class="stat-change positive">+12% this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(76, 175, 80, 0.1);">
+                        <i class="fas fa-coins" style="color: var(--success-color);"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Tokens</h3>
+                        <p id="totalTokens">892.5K</p>
+                        <span class="stat-change positive">+8% this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(255, 152, 0, 0.1);">
+                        <i class="fas fa-mining-pickaxe" style="color: var(--warning-color);"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Mining Rate</h3>
+                        <p id="miningRate">0.5/min</p>
+                        <span class="stat-change neutral">Stable</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(233, 30, 99, 0.1);">
+                        <i class="fas fa-tasks" style="color: #E91E63;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Tasks</h3>
+                        <p id="activeTasks">45</p>
+                        <span class="stat-change positive">+15% this week</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Token Distribution</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period active" data-period="week">Week</button>
+                            <button class="chart-period" data-period="month">Month</button>
+                            <button class="chart-period" data-period="year">Year</button>
+                        </div>
+                    </div>
+                    <div id="tokenDistributionChart"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>User Growth</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period active" data-period="week">Week</button>
+                            <button class="chart-period" data-period="month">Month</button>
+                            <button class="chart-period" data-period="year">Year</button>
+                        </div>
+                    </div>
+                    <div id="userGrowthChart"></div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-section">
+                <div class="section-header">
+                    <h3>Recent Activity</h3>
+                    <button class="view-all-btn" onclick="location.href='#'">View All</button>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="panel-header">
+            <h3>Notifications</h3>
+            <button class="close-btn" onclick="hideNotifications()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list">
+            <!-- Notifications will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Profile Menu -->
+    <div class="profile-menu" id="profileMenu">
+        <div class="menu-header">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" alt="Admin">
+            <div class="menu-user-info">
+                <h4>Admin User</h4>
+                <span>admin@example.com</span>
+            </div>
+        </div>
+        <ul class="menu-items">
+            <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
