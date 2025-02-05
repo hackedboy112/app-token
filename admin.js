@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const isAdminAuthenticated = localStorage.getItem('isAdminAuthenticated');
     const currentPage = window.location.pathname;
     
-    if (!isAdminAuthenticated && !currentPage.includes('login.html')) {
-        window.location.href = 'login.html';
-        return;
-    }
+    //if (!isAdminAuthenticated && !currentPage.includes('login.html')) {
+        //window.location.href = 'login.html';
+       // return;
+//}
 
     // Handle admin login
     const adminLoginForm = document.getElementById('adminLoginFormElement');
